@@ -1,3 +1,5 @@
+user = User.create email: 'adit@demo.com', name: 'Adit'
+
 animals = Topic.create name: 'Animals'
 alligators = Topic.create name: 'Alligators'
 airplanes = Topic.create name: 'Airplanes'
