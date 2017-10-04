@@ -1,10 +1,24 @@
-/* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-//
-// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
-// layout file, like app/views/layouts/application.html.erb
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import { ConnectedRouter } from 'react-router-redux'
+import { Provider } from 'react-redux'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
-console.log('Hello World from Webpacker')
+// # App
+import App from '../components/App'
+import { storeFactory } from '../components/Store'
+const { store, history } = storeFactory()
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>,
+    document.body.appendChild(document.createElement('div')),
+  )
+})
