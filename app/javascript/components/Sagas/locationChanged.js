@@ -1,10 +1,10 @@
-import {put} from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
+
+import eventsActions from '../Actions/eventsActions'
 
 export function *locationChanged(action) {
   if (action.payload.pathname == '/') {
     const query = new URLSearchParams(action.payload.search)
-    yield put({
-      type: 'events.FETCH_LIST',
-    })
+    yield put(eventsActions.fetchList())
   }
 }

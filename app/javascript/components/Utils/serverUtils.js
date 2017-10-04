@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import notificationsActions from '../Actions/notificationsActions'
+
 const instance = axios.create()
 
 function apiInstance() {
@@ -8,14 +10,9 @@ function apiInstance() {
 
 function handleServerError(error) {
   if (error.response.status == 401) {
-    return {
-      type: 'server.UNAUTHORISED',
-    }
+    return notificationsActions.unauthorised()
   }
-  return {
-    type: 'server.GENERIC_ERROR',
-    message: error.message,
-  }
+  return notificationsActions.notification(error.message)
 }
 
 export {

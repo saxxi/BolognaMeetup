@@ -12,6 +12,8 @@ import MenuIcon from 'material-ui-icons/Menu'
 import Toolbar from 'material-ui/Toolbar'
 import Button from 'material-ui/Button'
 
+import Notification from './Ui/Notification'
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -84,6 +86,7 @@ class Layout extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
+        <Notification />
         {this.props.children}
       </div>
     )

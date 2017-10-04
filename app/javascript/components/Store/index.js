@@ -13,9 +13,9 @@ const storeFactory = () => {
   const sagaMiddleware = createSagaMiddleware()
 
   let middleware = applyMiddleware(
-    logger,
+    sagaMiddleware,
     routerMiddleware(history),
-    sagaMiddleware
+    logger
   )
 
   if (process.env.NODE_ENV === 'development' && window.devToolsExtension) {
