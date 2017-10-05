@@ -5,15 +5,13 @@ class Event < ActiveRecord::Base
   scope :as_list, -> { select("id, name as text") }
 
   validates_presence_of :name
-
   accepts_nested_attributes_for :topics
+  after_save { ::NotifyUserNewEventJob.perform_now(self.id) }
 
   # to get started, better specific tool like eg. ElasticSearch
-  scope :search, ->(user, params = {}) {
-    if params[:q].present?
-      q = q.where("name ILIKE ?", "%#{params[:q]}%")
-      q = q.where("place ILIKE ?", "%#{params[:q]}%")
-    end
+  scope :search, ->(params = {}) {
+    q = includes(:topics)
+    q = q.where("name ILIKE ?", "%#{params[:q]}%") if params[:q].present?
     q = q.where("id NOT IN (?)", params[:exclude_ids]) if params[:exclude_ids].present?
     q
   }

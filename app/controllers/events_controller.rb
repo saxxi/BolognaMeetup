@@ -38,7 +38,12 @@ class EventsController < ApplicationController
   private
 
   def search_events_params
-    params.permit(:q, :exclude_ids).tap do |p|
+    params.permit(
+      :q,
+      :place,
+      # ... evt_date, start_time, end_time
+      :exclude_ids
+    ).tap do |p|
       p[:exclude_ids] = p[:exclude_ids].split(',') if p[:exclude_ids].present?
     end
   end

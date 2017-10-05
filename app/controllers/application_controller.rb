@@ -22,6 +22,11 @@ class ApplicationController < ActionController::Base
     })
   end
 
+  def current_user # Fake!
+    @current_user ||= User.first
+  end
+  helper_method :current_user
+
   protected
 
   # def verified_request?

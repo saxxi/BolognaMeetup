@@ -13,6 +13,7 @@ import Toolbar from 'material-ui/Toolbar'
 import Button from 'material-ui/Button'
 
 import Notification from './Ui/Notification'
+import ServerNotifier from './ServerNotifier'
 
 const styles = theme => ({
   root: {
@@ -86,6 +87,7 @@ class Layout extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
+        <ServerNotifier />
         <Notification />
         {this.props.children}
       </div>

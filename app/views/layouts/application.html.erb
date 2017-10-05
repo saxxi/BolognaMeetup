@@ -6,6 +6,9 @@
   </head>
 
   <body>
+    <script type="text/javascript">
+      window.JWT_UserId = "<%= current_user.id.to_s %>" // get from JWT!
+    </script>
     <%= yield %>
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
